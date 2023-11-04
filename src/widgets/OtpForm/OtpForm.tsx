@@ -1,7 +1,7 @@
+import { FC } from 'react';
 import { Stack, Button, Group, PinInput, Loader } from '@mantine/core';
 import { IconArrowLeft } from '@tabler/icons-react';
-import styles from '../pages/Auth/Auth.module.scss';
-import { FC } from 'react';
+import styles from '../../pages/Auth/Auth.module.css';
 
 type OtpFormProps = {
   otp: string;

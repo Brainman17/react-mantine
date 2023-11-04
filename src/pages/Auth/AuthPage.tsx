@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useTranslation } from 'react-i18next';
 
 import { Stack, Button, Group, Loader } from '@mantine/core';
 import '@mantine/core/styles.css';
@@ -12,10 +13,10 @@ import { onCaptchaVerifier } from '../../app/lib/auth';
 
 import { extendedWindow } from '../../shared/extendedWindow';
 import PhoneInput from 'react-phone-input-2';
-import OtpForm from '../../widgets/OtpForm';
+import OtpForm from '../../widgets/OtpForm/OtpForm';
 import 'react-phone-input-2/lib/style.css';
-import styles from './Auth.module.scss';
-import './Auth.scss';
+import styles from './Auth.module.css';
+import './Auth.css';
 import { StatusEnum } from '../../store/user/types';
 
 const AuthPage: FC = () => {
@@ -24,6 +25,7 @@ const AuthPage: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showOtp, setShowOtp] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const onSignIn = () => {
     setIsLoading(true);
@@ -80,7 +82,7 @@ const AuthPage: FC = () => {
         <Stack h={300} bg="var(--mantine-color-body)" p={100} align="center">
           <div id="recaptcha-container"></div>
           <form className={styles.form} onSubmit={(event) => event.preventDefault}>
-            <h2 className={styles.heading}>Войдите</h2>
+            <h2 className={styles.heading}>{t('auth.title')}</h2>
             <PhoneInput
               country={'ua'}
               value={phoneNumber}
@@ -96,7 +98,7 @@ const AuthPage: FC = () => {
                 {isLoading && (
                   <Loader size={16} color="white" className={styles.spinner} />
                 )}
-                Отправить СМС с кодом
+                {t('auth.sendMessage')}
               </Button>
             </Group>
           </form>
