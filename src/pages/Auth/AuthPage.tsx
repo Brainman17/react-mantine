@@ -1,10 +1,10 @@
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';
 
-import { Stack, Button, Group, Loader } from '@mantine/core';
+import { Stack, Button, Group } from '@mantine/core';
+import { Notifications, notifications } from '@mantine/notifications';
+import { useForm } from '@mantine/form';
 import '@mantine/core/styles.css';
 
 import { signInWithPhoneNumber } from 'firebase/auth';
@@ -20,12 +20,18 @@ import './Auth.css';
 import { StatusEnum } from '../../store/user/types';
 
 const AuthPage: FC = () => {
-  const [phoneNumber, setPhoneNumber] = useState('');
   const [otp, setOtp] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showOtp, setShowOtp] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const form = useForm({
+    initialValues: {
+      phoneNumber: '+',
+      termsOfService: false,
+    },
+  });
 
   const onSignIn = () => {
     setIsLoading(true);
@@ -33,20 +39,34 @@ const AuthPage: FC = () => {
 
     const appVerifier = extendedWindow.recaptchaVerifier;
 
-    signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+    const formattedPhoneNumber = '+' + phoneNumber;
+
+    signInWithPhoneNumber(auth, formattedPhoneNumber, appVerifier)
       .then((confirmationResult) => {
+        form.setFieldValue('phoneNumber', formattedPhoneNumber);
         extendedWindow.confirmationResult = confirmationResult;
         setShowOtp(true);
-        toast.success(StatusEnum.SUCCESS);
+        notifications.show({
+          title: StatusEnum.SUCCESS,
+          message: 'Enter confirmation code!',
+          color: 'cyan',
+        });
       })
       .catch((err: string) => {
         console.error(err);
-        toast.error(StatusEnum.ERROR);
+        notifications.show({
+          title: StatusEnum.ERROR,
+          message: 'Something went wrong!',
+          color: 'red',
+        });
       })
       .finally(() => {
         setIsLoading(false);
       });
   };
+
+  const { phoneNumber } = form.values;
+  console.log(phoneNumber);
 
   const onOtpVerify = () => {
     setIsLoading(true);
@@ -69,7 +89,6 @@ const AuthPage: FC = () => {
     <>
       {showOtp ? (
         <>
-          <ToastContainer theme={'dark'} />
           <OtpForm
             otp={otp}
             setOtp={setOtp}
@@ -77,27 +96,26 @@ const AuthPage: FC = () => {
             setShowOtp={setShowOtp}
             onOtpVerify={onOtpVerify}
           />
+          <Notifications autoClose={4000} />
         </>
       ) : (
         <Stack h={300} bg="var(--mantine-color-body)" p={100} align="center">
           <div id="recaptcha-container"></div>
-          <form className={styles.form} onSubmit={(event) => event.preventDefault}>
+          <form
+            className={styles.form}
+            onSubmit={form.onSubmit((values) => console.log(values))}
+          >
             <h2 className={styles.heading}>{t('auth.title')}</h2>
-            <PhoneInput
-              country={'ua'}
-              value={phoneNumber}
-              onChange={(phone) => setPhoneNumber('+' + phone)}
-            />
+            <PhoneInput country={'ua'} {...form.getInputProps('phoneNumber')} />
             <Group justify="flex-end" mt={40}>
               <Button
                 p="10px 60px 10px"
                 gradient={{ from: 'blue', to: 'cyan', deg: 90 }}
                 className={styles.button}
                 onClick={onSignIn}
+                loading={isLoading}
+                loaderProps={{ type: 'dots' }}
               >
-                {isLoading && (
-                  <Loader size={16} color="white" className={styles.spinner} />
-                )}
                 {t('auth.sendMessage')}
               </Button>
             </Group>

@@ -10,7 +10,6 @@ import styles from './App.module.css';
 const App: FC = () => {
   return (
     <div className={styles.app}>
-      <Divider size="xl" orientation="vertical" />
       <Header />
       <Divider my="xs" />
       <main>

@@ -1,3 +1,9 @@
+.mantine-Notification-root {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
 .form-control {
   color: black;
 }

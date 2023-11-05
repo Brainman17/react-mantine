@@ -14,8 +14,6 @@ const theme = createTheme({
   primaryShade: 8,
 });
 
-// const { t } = useTranslation();
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <MantineProvider defaultColorScheme="dark" theme={theme}>

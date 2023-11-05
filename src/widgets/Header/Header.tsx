@@ -1,11 +1,12 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Switch, useMantineTheme, rem, Button } from '@mantine/core';
+import { Switch, useMantineTheme, rem, Select } from '@mantine/core';
 import { IconSun, IconMoonStars } from '@tabler/icons-react';
 import styles from './Header.module.css';
 import logo from '../../../public/static/logo.png';
 
 const Header: FC = () => {
+  const [value, setValue] = useState('');
   const theme = useMantineTheme();
   const { i18n } = useTranslation();
 
@@ -25,28 +26,23 @@ const Header: FC = () => {
     />
   );
 
-  const changeLanguage = (language: string) => {
-    i18n.changeLanguage(language);
+  const changeLanguage = async (language: string | null) => {
+    await i18n.changeLanguage(language as string);
+    setValue(value as string);
   };
 
   return (
     <header className={styles.header}>
       <img src={logo} alt="logo" className={styles.logo} />
-      <div className={styles.header__group}>
-        {/* <Select
-          data={['Ru', 'En']}
-          defaultValue={'Ru'}
+      <div className={styles.group}>
+        <Select
+          data={['ru', 'en']}
+          defaultValue="Ru"
           w={70}
           className={styles.select}
           value={value}
-          onChange={setValue}
-          onClick={() => changeLanguage}
-        /> */}
-
-        <Button onClick={() => changeLanguage('en')} mr={10}>
-          EN
-        </Button>
-        <Button onClick={() => changeLanguage('ru')}>RU</Button>
+          onChange={changeLanguage}
+        />
         <Switch
           size="lg"
           className={styles.switch}

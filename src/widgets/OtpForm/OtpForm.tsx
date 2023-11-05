@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import { Stack, Button, Group, PinInput, Loader } from '@mantine/core';
+import { Stack, Button, Group, PinInput } from '@mantine/core';
 import { IconArrowLeft } from '@tabler/icons-react';
+
 import styles from '../../pages/Auth/Auth.module.css';
 
 type OtpFormProps = {
@@ -20,7 +21,7 @@ const OtpForm: FC<OtpFormProps> = ({
 }) => {
   return (
     <Stack h={300} bg="var(--mantine-color-body)" p={100} ta="center">
-      <form className={styles.form} onSubmit={(event) => event.preventDefault}>
+      <form className={styles.form} onSubmit={(values) => console.log(values)}>
         <h2 className={styles.heading}>Войдите</h2>
         <PinInput
           value={otp}
@@ -35,15 +36,14 @@ const OtpForm: FC<OtpFormProps> = ({
           <Button onClick={() => setShowOtp(false)} radius="xl" variant="outline">
             <IconArrowLeft className={styles.icon} />
           </Button>
-          {isLoading ? (
-            <Button radius="xl">
-              <Loader size={16} color="white" />
-            </Button>
-          ) : (
-            <Button onClick={onOtpVerify} radius="xl">
-              Войти
-            </Button>
-          )}
+          <Button
+            loading={isLoading}
+            loaderProps={{ type: 'dots' }}
+            onClick={onOtpVerify}
+            radius="xl"
+          >
+            Войти
+          </Button>
         </Group>
       </form>
     </Stack>
