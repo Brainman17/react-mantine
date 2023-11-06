@@ -4,10 +4,7 @@
         "sendMessage": "Send a message with code",
         "statusSuccess": "Success!",
         "statusLoading": "Loading!",
-        "statusVerificationError": "Error! Incorrect code",
-        "statusPhoneNumberError": "Error! Wrong phone number",
-        "statusMessageVerificationError": "Enter the correct code",
-        "statusMessagePhoneNumberError": "Enter the correct phone number",
+        "statusError": "Error!",
         "statusMessageSuccess": "Enter confirmation code",
         "confirmation": "Confirm"
     }

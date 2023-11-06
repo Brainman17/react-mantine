@@ -2,24 +2,22 @@ import { FC } from 'react';
 import { Stack, Button, Group, PinInput } from '@mantine/core';
 import { IconArrowLeft } from '@tabler/icons-react';
 import { t } from 'i18next';
-import styles from '../../pages/Auth/Auth.module.css';
+import styles from './OtpForm.module.css';
 
-type OtpFormProps = {
+export type OtpFormProps = {
   otp: string;
   setOtp: (str: string) => void;
-  authStep: number;
-  setAuthStep: (step: number) => void;
   isLoading: boolean;
   onOtpVerify: () => void;
+  setComponentKey: (component: string) => void;
 };
 
 const OtpForm: FC<OtpFormProps> = ({
   otp,
   setOtp,
-  authStep,
-  setAuthStep,
   isLoading,
   onOtpVerify,
+  setComponentKey,
 }) => {
   return (
     <Stack h={300} bg="var(--mantine-color-body)" p={100} ta="center">
@@ -36,10 +34,10 @@ const OtpForm: FC<OtpFormProps> = ({
         />
         <Group mt={40} justify="center">
           <Button
-            onClick={() => setAuthStep(authStep - 1)}
             radius="xl"
             variant="outline"
             mr={50}
+            onClick={() => setComponentKey('phoneForm')}
           >
             <IconArrowLeft className={styles.icon} />
           </Button>
