@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { StatusEnum, UserSliceState} from './types';
+import { UserSliceState} from './types';
 
 const initialState: UserSliceState = {
     userNumber: null,
     isLoading: false,
-    status: StatusEnum.LOADING
+    status: "Loading..."
 }
 
 const userSlice = createSlice({

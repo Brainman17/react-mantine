@@ -6,16 +6,16 @@ import translationRu from '../../../public/locales/ru/translation.json';
 import translationEn from '../../../public/locales/en/translation.json';
 
 i18n.use(Backend).use(LanguageDetector).use(initReactI18next).init({
-    lng: 'en',
+    lng: 'En',
     debug: true,
     resources: {
-        ru: {
+        Ru: {
             translation: translationRu
         } , 
-        en: {
+        En: {
             translation: translationEn
         } 
       }
-})
+});
 
 export default i18n;

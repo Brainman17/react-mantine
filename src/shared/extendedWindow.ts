@@ -1,1 +1,1 @@
-export const extendedWindow = (window as ExtendedWindow);
+export const extendedWindow = (window as extendedWindow);

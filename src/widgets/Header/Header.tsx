@@ -4,6 +4,7 @@ import { Switch, useMantineTheme, rem, Select } from '@mantine/core';
 import { IconSun, IconMoonStars } from '@tabler/icons-react';
 import styles from './Header.module.css';
 import logo from '../../../public/static/logo.png';
+import selectDataArray from '../../shared/config/selectLanguages';
 
 const Header: FC = () => {
   const [value, setValue] = useState('');
@@ -36,11 +37,10 @@ const Header: FC = () => {
       <img src={logo} alt="logo" className={styles.logo} />
       <div className={styles.group}>
         <Select
-          data={['ru', 'en']}
-          defaultValue="Ru"
+          data={selectDataArray}
           w={70}
           className={styles.select}
-          value={value}
+          value={i18n.language}
           onChange={changeLanguage}
         />
         <Switch

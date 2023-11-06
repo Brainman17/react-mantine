@@ -1,6 +1,14 @@
 {
     "auth": {
         "title": "Войдите",
-        "sendMessage": "Отправить СМС с кодом "
+        "sendMessage": "Отправить СМС с кодом",
+        "statusSuccess": "Успешно!",
+        "statusLoading": "Загрузка..",
+        "statusMessageSuccess": "Введите код подтверждения",
+        "statusVerificationError": "Ошибка! Некорректный код",
+        "statusPhoneNumberError": "Ошибка! Некорректный номер телефона",
+        "statusMessageVerificationError": "Введите корректный код",
+        "statusMessagePhoneNumberError": "Введите корректный номер телефона",
+        "confirmation": "Подтвердить"
     }
 }

@@ -1,4 +1,6 @@
+import { ConfirmationResult } from "firebase/auth";
+
 type ExtendedWindow = Window & typeof globalThis & {
-    recaptchaVerifier?: any;
-    confirmationResult?: any;
+    recaptchaVerifier?: RecaptchaVerifier;
+    confirmationResult?: ConfirmationResult;
 }

@@ -4,6 +4,7 @@ import AuthPage from '../pages/Auth/AuthPage';
 import HomePage from '../pages/HomePage';
 import { Divider } from '@mantine/core';
 import '@mantine/core/styles/global.css';
+import '@mantine/notifications/styles.css';
 import Header from '../widgets/Header/Header';
 import styles from './App.module.css';
 
