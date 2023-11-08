@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.group {
+  display: flex;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.switch {
+  margin-top: 3px;
+  margin-left: 20px;
+}
+
+.select {
+  color: white;
+}

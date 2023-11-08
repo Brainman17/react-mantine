@@ -1,0 +1,11 @@
+{
+    "auth": {
+        "title": "Войдите",
+        "sendMessage": "Отправить СМС с кодом",
+        "statusSuccess": "Успешно!",
+        "statusLoading": "Загрузка..",
+        "statusError": "Ошибка!",
+        "statusMessageSuccess": "Введите код подтверждения",
+        "confirmation": "Подтвердить"
+    }
+}

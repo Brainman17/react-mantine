@@ -1,0 +1,11 @@
+{
+    "auth": {
+        "title": "Sign in",
+        "sendMessage": "Send a message with code",
+        "statusSuccess": "Success!",
+        "statusLoading": "Loading!",
+        "statusError": "Error!",
+        "statusMessageSuccess": "Enter confirmation code",
+        "confirmation": "Confirm"
+    }
+}
