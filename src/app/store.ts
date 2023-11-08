@@ -1,10 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit';
-import userSlice from './user/slice';
+import authSlice from '../entities/auth/model/slice';
 import { useDispatch } from "react-redux";
 
 const store = configureStore({
     reducer: {
-        userSlice
+        authSlice
     }
 })
 

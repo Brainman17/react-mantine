@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './app/App.tsx';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './store/store.ts';
+import store from './app/store.ts';
 import { MantineProvider, createTheme, Loader } from '@mantine/core';
 import './app/lib/firebase.config.ts';
 import './shared/lib/i18n.ts';

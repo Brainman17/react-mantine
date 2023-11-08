@@ -4,6 +4,7 @@ import { auth } from "./firebase.config";
 
 export const onCaptchaVerifier = () => {
     if (!extendedWindow.recaptchaVerifier) {
+      
       extendedWindow.recaptchaVerifier = new RecaptchaVerifier(
         auth,
         'recaptcha-container',
